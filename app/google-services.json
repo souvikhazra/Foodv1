@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "74204299453",
+    "firebase_url": "https://foodappv1.firebaseio.com",
+    "project_id": "foodappv1",
+    "storage_bucket": "foodappv1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74204299453:android:d4ec9fc8ba66de76",
+        "android_client_info": {
+          "package_name": "android.eurecom.fr.foodv1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74204299453-9mtr6r8t7jdls3khd5b9nel7q1r3ek54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn6vXK04ltWK5yBHMSzcEa_gEDyg-arWg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
