@@ -16,9 +16,8 @@ import static android.view.View.VISIBLE;
 
 
 public class AccountActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
     private FragmentAccountBinding binding;
-    private boolean isLogin = true;
+    private boolean isLogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,7 @@ public class AccountActivity extends AppCompatActivity {
                 .replace(R.id.login_fragment, topLoginFragment)
                 .commit();
 
-        binding.loginFragment.setRotation(-90);
+        binding.signUpFragment.setRotation(90);
 
         binding.button.setOnSignUpListener(topSignUpFragment);
         binding.button.setOnLoginListener(topLoginFragment);
@@ -45,7 +44,8 @@ public class AccountActivity extends AppCompatActivity {
                             isLogin ? R.color.login_background_color : R.color.register_background_color));
         });
 
-        binding.loginFragment.setVisibility(INVISIBLE);
+        binding.signUpFragment.setVisibility(INVISIBLE);
+        binding.button.startAnimation();
     }
 
     @Override

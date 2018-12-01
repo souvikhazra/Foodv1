@@ -17,7 +17,7 @@ public class FlexibleFrameLayout extends FrameLayout {
             {2, 1, 0}
     };
 
-    private int currentOrder;
+    private int currentOrder=1;
 
     public FlexibleFrameLayout(@NonNull Context context) {
         super(context);
