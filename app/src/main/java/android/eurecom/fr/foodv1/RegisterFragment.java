@@ -117,7 +117,6 @@ public class RegisterFragment extends Fragment implements OnSignUpListener{
                             mCallback.onRegistrationSuccessful();
                             Fragment fragment = null;
                             fragment = new ProfileFragment();
-
                             replaceFragment(fragment);
                         } else {
                             //display some message here
@@ -166,7 +165,7 @@ public class RegisterFragment extends Fragment implements OnSignUpListener{
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-        transaction.replace(R.id.login_fragment, someFragment);
+        transaction.replace(R.id.sign_up_fragment, someFragment);
 
         transaction.addToBackStack(null);
 
