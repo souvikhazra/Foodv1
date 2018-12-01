@@ -42,4 +42,6 @@
     <string name="register">Registration</string>
     <string name="registration_error">We could not register you. Please check the data provided by you.</string>
     <string name="registration_success">Successfully registered</string>
+    <string name="login_message">Trying to login. Please wait...</string>
+    <string name="enter_password">Please enter password</string>
 </resources>

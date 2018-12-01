@@ -4,10 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.eurecom.fr.foodv1.databinding.FragmentAccountBinding;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.databinding.DataBindingUtil;
 import static android.eurecom.fr.foodv1.FlexibleFrameLayout.ORDER_LOGIN_STATE;
@@ -17,7 +15,7 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 
-public class AccountActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity implements LoginFragment.OnLoginFragmentListener{
     private FragmentAccountBinding binding;
     private boolean isLogin = false;
 
@@ -27,6 +25,7 @@ public class AccountActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.fragment_account);
 
         LoginFragment topLoginFragment = new LoginFragment();
+        topLoginFragment.setOnHeadlineSelectedListener(this);
         RegisterFragment topSignUpFragment = new RegisterFragment();
 
         getSupportFragmentManager().beginTransaction()
@@ -86,5 +85,12 @@ public class AccountActivity extends AppCompatActivity {
 
         isLogin = !isLogin;
         binding.button.startAnimation();
+    }
+
+
+    @Override
+    public void onLoginSuccessful() {
+        binding.button.setVisibility(INVISIBLE);
+        binding.button.setEnabled(false);
     }
 }

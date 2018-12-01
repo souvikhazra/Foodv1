@@ -68,7 +68,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         if(view == buttonLogout){
             //logging out the user
             firebaseAuth.signOut();
-            //TODO: start Account Activity
+            Intent intent = new Intent(getActivity(), AccountActivity.class);
+            startActivity(intent);
 
 
 }}

@@ -42,7 +42,6 @@ public class RegisterFragment extends Fragment implements OnSignUpListener{
         firebaseAuth = FirebaseAuth.getInstance();
         View rootView = inflater.inflate(R.layout.fragment_register, container, false);
 
-        //Button registerBtn = (Button) rootView.findViewById(R.id.buttonRegister);
         editTextEmail = (EditText) rootView.findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) rootView.findViewById(R.id.editTextPassword);
         editTextConfirmPassword = (EditText) rootView.findViewById(R.id.editTextConfirmPassword);

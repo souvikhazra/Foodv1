@@ -1,5 +1,6 @@
 package android.eurecom.fr.foodv1;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -28,6 +29,17 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class LoginFragment extends Fragment implements OnLoginListener {
+    OnLoginFragmentListener mCallback;
+
+    public void setOnHeadlineSelectedListener(OnLoginFragmentListener activity) {
+        mCallback = activity;
+    }
+
+    // Container Activity must implement this interface
+    public interface OnLoginFragmentListener {
+        void onLoginSuccessful();
+    }
+
 
     public LoginFragment() {
     }
@@ -74,7 +86,7 @@ public class LoginFragment extends Fragment implements OnLoginListener {
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-        transaction.replace(R.id.fragment_container, someFragment);
+        transaction.replace(R.id.login_fragment, someFragment);
 
         transaction.addToBackStack(null);
 
@@ -96,14 +108,13 @@ public class LoginFragment extends Fragment implements OnLoginListener {
         }
 
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(getActivity(),"Please enter password",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),R.string.enter_password,Toast.LENGTH_LONG).show();
             return;
         }
 
-        //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("Trying to login. Please Wait...");
+        progressDialog.setMessage(getString(R.string.login_message));
         progressDialog.show();
 
         //logging in the user
@@ -114,6 +125,7 @@ public class LoginFragment extends Fragment implements OnLoginListener {
                         progressDialog.dismiss();
                         //if the task is successfull
                         if(task.isSuccessful()){
+                            mCallback.onLoginSuccessful();
                             Fragment fragment = null;
                             fragment = new ProfileFragment();
 
