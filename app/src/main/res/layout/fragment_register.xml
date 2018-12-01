@@ -20,10 +20,10 @@
             android:background="@drawable/bubble"
             android:gravity="center_vertical"
             android:hint="@string/email"
-            android:inputType="text"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
             android:textColor="#ffffff"
+            android:inputType="textEmailAddress"
             android:textColorHint="#8effffff" />
 
         <EditText
