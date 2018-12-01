@@ -1,5 +1,6 @@
 package android.eurecom.fr.foodv1;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -102,7 +103,7 @@ public class LoginFragment extends Fragment implements OnLoginListener {
         //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("Logging Please Wait...");
+        progressDialog.setMessage("Trying to login. Please Wait...");
         progressDialog.show();
 
         //logging in the user
@@ -117,11 +118,13 @@ public class LoginFragment extends Fragment implements OnLoginListener {
                             fragment = new ProfileFragment();
 
                             replaceFragment(fragment);
-
-                            //start the profile fragment
-
                         }else{
-
+                            //TODO: nice looking AlertDialog?
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setMessage(R.string.login_failed)
+                                    .setTitle(R.string.login);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
                         }
                     }
                 });
