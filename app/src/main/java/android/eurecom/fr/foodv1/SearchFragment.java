@@ -1,5 +1,6 @@
 package android.eurecom.fr.foodv1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -38,9 +39,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                     replaceFragment(fragment);
                 }
                 else{
-                    //TODO: start Account Activity
-
-                    replaceFragment(fragment);
+                    Intent intent = new Intent(getActivity(), AccountActivity.class);
+                    startActivity(intent);
                 }
                 break;
 

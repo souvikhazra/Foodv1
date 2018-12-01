@@ -44,4 +44,9 @@
     <string name="registration_success">Successfully registered</string>
     <string name="login_message">Trying to login. Please wait...</string>
     <string name="enter_password">Please enter password</string>
+    <string name="email_password_rest">We have sent you an email to restore your password.</string>
+    <string name="error_reset_password">We are sorry. An error occured. Please try again.</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="reset_password">Reset Password</string>
 </resources>

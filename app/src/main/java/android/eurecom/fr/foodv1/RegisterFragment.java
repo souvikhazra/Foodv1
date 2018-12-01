@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,16 @@ import java.util.regex.Pattern;
 
 
 public class RegisterFragment extends Fragment implements OnSignUpListener{
+    OnRegisterFragmentListener mCallback;
+
+    public void setOnRegisterFragmentListener(OnRegisterFragmentListener activity) {
+        mCallback = activity;
+    }
+
+    // Container Activity must implement this interface
+    public interface OnRegisterFragmentListener {
+        void onRegistrationSuccessful();
+    }
 
     //defining view objects
     private EditText editTextEmail;
@@ -103,6 +114,11 @@ public class RegisterFragment extends Fragment implements OnSignUpListener{
                         if (task.isSuccessful()) {
                             //display some message here
                             Toast.makeText(getActivity(), R.string.registration_success, Toast.LENGTH_LONG).show();
+                            mCallback.onRegistrationSuccessful();
+                            Fragment fragment = null;
+                            fragment = new ProfileFragment();
+
+                            replaceFragment(fragment);
                         } else {
                             //display some message here
                             Toast.makeText(getActivity(), R.string.registration_error, Toast.LENGTH_LONG).show();
@@ -146,4 +162,16 @@ public class RegisterFragment extends Fragment implements OnSignUpListener{
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.login_fragment, someFragment);
+
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+
+    }
+
 }

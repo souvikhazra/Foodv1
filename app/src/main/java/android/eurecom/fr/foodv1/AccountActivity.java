@@ -15,7 +15,7 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 
-public class AccountActivity extends AppCompatActivity implements LoginFragment.OnLoginFragmentListener{
+public class AccountActivity extends AppCompatActivity implements LoginFragment.OnLoginFragmentListener, RegisterFragment.OnRegisterFragmentListener{
     private FragmentAccountBinding binding;
     private boolean isLogin = false;
 
@@ -27,6 +27,7 @@ public class AccountActivity extends AppCompatActivity implements LoginFragment.
         LoginFragment topLoginFragment = new LoginFragment();
         topLoginFragment.setOnHeadlineSelectedListener(this);
         RegisterFragment topSignUpFragment = new RegisterFragment();
+        topSignUpFragment.setOnRegisterFragmentListener(this);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.sign_up_fragment, topSignUpFragment)
@@ -90,6 +91,12 @@ public class AccountActivity extends AppCompatActivity implements LoginFragment.
 
     @Override
     public void onLoginSuccessful() {
+        binding.button.setVisibility(INVISIBLE);
+        binding.button.setEnabled(false);
+    }
+
+    @Override
+    public void onRegistrationSuccessful() {
         binding.button.setVisibility(INVISIBLE);
         binding.button.setEnabled(false);
     }
