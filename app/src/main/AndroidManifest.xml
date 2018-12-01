@@ -21,7 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AccountActivity"></activity>
+        <activity
+            android:name=".AccountActivity"
+            android:parentActivityName="android.eurecom.fr.foodv1.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.eurecom.fr.foodv1.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
