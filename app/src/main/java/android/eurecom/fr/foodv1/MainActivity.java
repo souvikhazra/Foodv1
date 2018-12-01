@@ -1,6 +1,7 @@
 package android.eurecom.fr.foodv1;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -60,16 +61,18 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_account:
                             firebaseAuth = FirebaseAuth.getInstance();
                             if(firebaseAuth.getCurrentUser() != null){
-                            selectedFragment = new ProfileFragment();}
+                                selectedFragment = new ProfileFragment();}
                             else{
-                                selectedFragment = new AccountFragment();
+                                startLogin();
                                 }
                             break;
 
                     }
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
+                    if(selectedFragment!=null){
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                selectedFragment).commit();
+                    }
 
                     return true;
                 }
@@ -92,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
                     permissions,
                     REQUEST_CODE);
         }
+    }
+
+    private void startLogin(){
+        Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

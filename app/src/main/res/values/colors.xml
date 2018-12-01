@@ -27,4 +27,9 @@
 <color name="Black">#000000</color>
 <color name="linkBlue">#4d94ff</color>
 <color name="black_overlay">#66000000</color>
+    <!-- Login & Registration Colors -->
+    <color name="login_background_color">#FF8C00</color>
+    <color name="register_background_color">#5F9EA0</color>
+    <color name="text">#ffffff</color>
+    <color name="text_two">#94ffffff</color>
 </resources>

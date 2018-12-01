@@ -1,5 +1,6 @@
 package android.eurecom.fr.foodv1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -67,9 +68,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         if(view == buttonLogout){
             //logging out the user
             firebaseAuth.signOut();
-            fragment = new AccountFragment();
-
-            replaceFragment(fragment);
+            //TODO: start Account Activity
 
 
 }}

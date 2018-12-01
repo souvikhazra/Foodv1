@@ -19,11 +19,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class RegisterFragment extends Fragment implements View.OnClickListener{
+public class RegisterFragment extends Fragment implements OnSignUpListener{
 
     //defining view objects
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private EditText editTextConfirmPassword;
 
 
     private ProgressDialog progressDialog;
@@ -38,30 +39,23 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
         firebaseAuth = FirebaseAuth.getInstance();
         View rootView = inflater.inflate(R.layout.fragment_register, container, false);
 
-        Button registerBtn = (Button) rootView.findViewById(R.id.buttonRegister);
+        //Button registerBtn = (Button) rootView.findViewById(R.id.buttonRegister);
         editTextEmail = (EditText) rootView.findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) rootView.findViewById(R.id.editTextPassword);
+        editTextConfirmPassword = (EditText) rootView.findViewById(R.id.editTextConfirmPassword);
 
 
         progressDialog = new ProgressDialog(getActivity());
 
-
-        registerBtn.setOnClickListener(this);
-
-        //initializing views
-
-
-
-        //attaching listener to button
-
         return rootView;
     }
 
-    private void registerUser() {
-
+    @Override
+    public void signUp() {
         //getting email and password from edit texts
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        String confirmPassword = editTextConfirmPassword.getText().toString().trim();
 
         //checking if email and passwords are empty
         if (TextUtils.isEmpty(email)) {
@@ -71,6 +65,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
 
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(getActivity(), "Please enter password", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //check if password inputs are equal
+        if(password.equals(confirmPassword)){
+            Toast.makeText(getActivity(), "Please enter two equal passwords", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -96,19 +96,5 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
                         progressDialog.dismiss();
                     }
                 });
-
-    }
-
-
-
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.buttonRegister:
-                registerUser();
-                break;
-
-            default:
-                break;
-        }
     }
 }

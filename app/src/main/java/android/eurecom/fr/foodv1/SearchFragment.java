@@ -38,7 +38,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                     replaceFragment(fragment);
                 }
                 else{
-                    fragment = new AccountFragment();
+                    //TODO: start Account Activity
 
                     replaceFragment(fragment);
                 }

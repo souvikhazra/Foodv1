@@ -26,7 +26,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class LoginFragment extends Fragment implements View.OnClickListener {
+public class LoginFragment extends Fragment implements OnLoginListener {
 
     public LoginFragment() {
     }
@@ -63,20 +63,27 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         editTextEmail = (EditText) rootView.findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) rootView.findViewById(R.id.editTextPassword);
-        Button buttonSignIn = (Button) rootView.findViewById(R.id.buttonSignin);
 
 
         progressDialog = new ProgressDialog(getActivity());
 
-        //attaching click listener
-        buttonSignIn.setOnClickListener(this);
-
-
         return rootView;
     }
 
-    //method for user login
-    private void userLogin(){
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.fragment_container, someFragment);
+
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+
+    }
+
+
+    @Override
+    public void login() {
         String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
 
@@ -113,37 +120,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
                             //start the profile fragment
 
+                        }else{
+
                         }
                     }
                 });
-
     }
-
-    @Override
-    public void onClick(View view) {
-        Fragment fragment = null;
-        switch (view.getId()) {
-            case R.id.buttonSignin:
-
-                userLogin();
-                break;
-
-
-        }
-    }
-
-    public void replaceFragment(Fragment someFragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-
-
-        transaction.replace(R.id.fragment_container, someFragment);
-
-        transaction.addToBackStack(null);
-
-        transaction.commit();
-
-    }
-
-
 }
